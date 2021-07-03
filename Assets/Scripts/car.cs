@@ -1,56 +1,53 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class car : MonoBehaviour
 {
-    public GameObject usr;
-    private GameObject latest_street_object;
-    private Vector3 latest_street_object_vector;
-    public GameObject usr_car;
-    private Rigidbody usr_car_rb;
-    private Camera usr_cam;
-    private Camera usr_car_cam;
-    private Vector3 usr_car_vector;
-    private Vector3 rotationRight = new Vector3(0, 30, 0);
-    private Vector3 rotationLeft = new Vector3(0, -30, 0);
-    private bool usr_car_touching = false;
-    private float base_usr_car_speed = 10f;
-    private float usr_car_speed;
-    private float acc = 0.1f;
+    private Rigidbody rb;
+    public Transform target;
+    public static float speed;
+    public static float base_speed = 10;
+    private float acceleration = 0.03f;
 
-    void Start()
+
+    Vector3 rotationRight = new Vector3(0, 30, 0);
+    Vector3 rotationLeft = new Vector3(0, -30, 0);
+
+    Vector3 forward = new Vector3(0, 0, 1);
+    Vector3 backward = new Vector3(0, 0, -1);
+
+    private void Start()
     {
-        usr_car_speed = base_usr_car_speed;
-        usr_car_rb = usr_car.GetComponent<Rigidbody>();
-        usr_cam = usr.GetComponent<Camera>();
-        usr_car_cam = usr.GetComponent<Camera>();
-        usr_car_vector = usr_car_rb.position;
+        rb = target.GetComponent<Rigidbody>();
+        speed = base_speed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.W))
         {
-            usr_car_speed += acc;
-            usr_car_vector = usr_car.transform.forward * usr_car_speed * Time.deltaTime;
-            usr_car_rb.MovePosition(usr_car.transform.position + usr_car_vector);
-            usr_car_speed = base_usr_car_speed;
+            transform.Translate(forward * speed * Time.deltaTime);
+            speed += acceleration;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            speed = base_speed;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            usr_car_speed = base_usr_car_speed;
-            usr_car_vector = usr_car.transform.forward * -usr_car_speed * Time.deltaTime;
-            usr_car_rb.MovePosition(usr_car.transform.position + usr_car_vector);
+            transform.Translate(backward * speed * Time.deltaTime);
         }
+
         if (Input.GetKey(KeyCode.D))
         {
             Quaternion deltaRotationRight = Quaternion.Euler(rotationRight * Time.deltaTime);
-            usr_car_rb.MoveRotation(usr_car_rb.rotation * deltaRotationRight);
+            rb.MoveRotation(rb.rotation * deltaRotationRight);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             Quaternion deltaRotationLeft = Quaternion.Euler(rotationLeft * Time.deltaTime);
-            usr_car_rb.MoveRotation(usr_car_rb.rotation * deltaRotationLeft);
+            rb.MoveRotation(rb.rotation * deltaRotationLeft);
         }
+
     }
 }

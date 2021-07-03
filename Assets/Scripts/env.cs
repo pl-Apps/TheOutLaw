@@ -21,6 +21,7 @@ public class env : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.G))
         {
+            
             Vector3 tmp;
             tmp.x = 0;
             tmp.y = 36;
