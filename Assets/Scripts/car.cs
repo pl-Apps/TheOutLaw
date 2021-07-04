@@ -4,9 +4,9 @@ public class car : MonoBehaviour
 {
     private Rigidbody rb;
     public Transform target;
-    public static float speed;
+    private float speed;
     public static float base_speed = 10;
-    private float acceleration = 0.03f;
+    public static float acceleration = 0.03f;
 
 
     Vector3 rotationRight = new Vector3(0, 30, 0);

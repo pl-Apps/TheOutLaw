@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class env : MonoBehaviour
 {
-
     public GameObject player;
     public GameObject car;
     public Camera player_cam;
@@ -21,7 +18,6 @@ public class env : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.G))
         {
-            
             Vector3 tmp;
             tmp.x = 0;
             tmp.y = 36;
