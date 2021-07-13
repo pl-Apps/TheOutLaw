@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class env : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class env : MonoBehaviour
             Quaternion tmp1 = Quaternion.Euler(tmp3);
             player.GetComponent<Rigidbody>().MoveRotation(tmp1);
             car.GetComponent<Rigidbody>().MoveRotation(tmp1);
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

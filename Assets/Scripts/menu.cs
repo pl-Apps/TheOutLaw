@@ -12,7 +12,7 @@ public class menu : MonoBehaviour
 
     void UpdateSpeed()
     {
-        car_speed_value.text = car.base_speed.ToString();
+        try { car_speed_value.text = car.base_speed.ToString(); } catch { }
     }
     public void plusSpeed()
     {
@@ -28,6 +28,11 @@ public class menu : MonoBehaviour
     public void play()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void multiplayer()
+    {
+        SceneManager.LoadScene(3);
     }
 
     public void settings()
